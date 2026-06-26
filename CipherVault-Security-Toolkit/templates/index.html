@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>CIPHERVAULT</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+<body>
+
+<div class="app">
+
+  <!-- ===================== TOP BAR ===================== -->
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-icon">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M12 2L4 5v6c0 5.25 3.4 9.74 8 11 4.6-1.26 8-5.75 8-11V5l-8-3z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <div class="brand-text">
+        <h1>CIPHERVAULT</h1>
+        <p>Advanced Cyber Defense Platform </p>
+      </div>
+    </div>
+
+    <div class="topbar-stats">
+      <div class="stat-badge stat-green">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M12 2L4 5v6c0 5.25 3.4 9.74 8 11 4.6-1.26 8-5.75 8-11V5l-8-3z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+        <div class="stat-text"><span class="stat-label">SECURE CONNECTION</span><span class="stat-value" id="connection-status">Active</span></div>
+      </div>
+      <div class="stat-badge stat-cyan">
+        <svg viewBox="0 0 24 24" fill="none"><rect x="5" y="11" width="14" height="9" rx="1.5" stroke="currentColor" stroke-width="1.6"/><path d="M8 11V7a4 4 0 0 1 8 0v4" stroke="currentColor" stroke-width="1.6"/></svg>
+        <div class="stat-text"><span class="stat-label">ENCRYPTIONS</span><span class="stat-value" id="stat-encryptions">0</span></div>
+      </div>
+      <div class="stat-badge stat-blue">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M7 3h7l4 4v14H7V3z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M14 3v4h4" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+        <div class="stat-text"><span class="stat-label">FILES PROCESSED</span><span class="stat-value" id="stat-files">8</span></div>
+      </div>
+      <div class="stat-badge stat-red">
+        <svg viewBox="0 0 24 24" fill="none"><path d="M12 2L4 5v6c0 5.25 3.4 9.74 8 11 4.6-1.26 8-5.75 8-11V5l-8-3z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M12 8v5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="12" cy="16" r="0.9" fill="currentColor"/></svg>
+        <div class="stat-text"><span class="stat-label">THREAT LEVEL</span><span class="stat-value" id="threat-level">LOW</span></div>
+      </div>
+    </div>
+  </header>
+
+  <div class="layout">
+
+    <!-- ===================== SIDEBAR ===================== -->
+    <aside class="sidebar">
+      <nav class="nav">
+        <a href="#" class="nav-item active" data-page="dashboard" onclick="showPage('dashboard');return false;">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M3 11.5L12 4l9 7.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 10v9a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1v-9" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Dashboard
+        </a>
+
+        <p class="nav-section">Encryption Tools</p>
+        <a href="#" class="nav-item" data-page="text-encryption" onclick="showPage('text-encryption');return false;">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M4 6h16M4 12h10M4 18h13" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+          Text Encryption
+        </a>
+        <a href="#" class="nav-item" data-page="file-encryption" onclick="showPage('file-encryption');return false;">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M7 3h7l4 4v14H7V3z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M14 3v4h4" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+          File Encryption
+        </a>
+        <a href="#" class="nav-item" data-page="hash-generator" onclick="showPage('hash-generator');return false;">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M5 9h14M5 15h14M9 4l-2 16M17 4l-2 16" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+          Hash Generator
+        </a>
+        <a href="#" class="nav-item" data-page="key-generator" onclick="showPage('key-generator');return false;">
+          <svg viewBox="0 0 24 24" fill="none"><circle cx="8" cy="14" r="3.5" stroke="currentColor" stroke-width="1.6"/><path d="M10.5 11.5L19 3M19 3v4M19 3h-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Key Generator
+        </a>
+        <a href="#" class="nav-item" data-page="password-manager" onclick="showPage('password-manager');return false;">
+          <svg viewBox="0 0 24 24" fill="none"><rect x="5" y="11" width="14" height="9" rx="1.5" stroke="currentColor" stroke-width="1.6"/><path d="M8 11V7a4 4 0 0 1 8 0v4" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="15.5" r="1.2" fill="currentColor"/></svg>
+          Password Manager
+        </a>
+
+        <p class="nav-section">History &amp; Reports</p>
+        <a href="#" class="nav-item" data-page="history" onclick="showPage('history');return false;">
+          <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="8" stroke="currentColor" stroke-width="1.6"/><path d="M12 8v4l3 2" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+          History
+        </a>
+        <a href="#" class="nav-item" data-page="security-report" onclick="showPage('security-report');return false;">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M7 3h10v18H7V3z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M9.5 8h5M9.5 12h5M9.5 16h3" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+          Security Report
+        </a>
+        <a href="#" class="nav-item" data-page="download-center" onclick="showPage('download-center');return false;">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M12 3v12m0 0l-4-4m4 4l4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 19h14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+          Download Center
+        </a>
+
+        <p class="nav-section">Settings</p>
+        <a href="#" class="nav-item" data-page="settings" onclick="showPage('settings');return false;">
+          <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="1.6"/><path d="M19 12a7 7 0 0 0-.1-1.2l2-1.5-2-3.4-2.3.9a7 7 0 0 0-2-1.2L14 3h-4l-.6 2.6a7 7 0 0 0-2 1.2l-2.3-.9-2 3.4 2 1.5A7 7 0 0 0 5 12c0 .4 0 .8.1 1.2l-2 1.5 2 3.4 2.3-.9c.6.5 1.3.9 2 1.2L10 21h4l.6-2.6c.7-.3 1.4-.7 2-1.2l2.3.9 2-3.4-2-1.5c.1-.4.1-.8.1-1.2z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg>
+          Settings
+        </a>
+        <a href="#" class="nav-item" data-page="about" onclick="showPage('about');return false;">
+          <svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.6"/><path d="M12 11v5.5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="12" cy="8" r="1" fill="currentColor"/></svg>
+          About
+        </a>
+      </nav>
+
+      <div class="sidebar-footer">
+        <svg class="sidebar-shield" viewBox="0 0 100 110" fill="none">
+          <path d="M50 6L12 20v28c0 26 16 44 38 56 22-12 38-30 38-56V20L50 6z" stroke="currentColor" stroke-width="2" opacity="0.5"/>
+          <path d="M36 52l10 10 18-20" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.7"/>
+        </svg>
+        <p>© 2026 Purushothama K C</p>
+      </div>
+    </aside>
+
+    <!-- ===================== MAIN ===================== -->
+    <main class="main">
+
+      <!-- ============ DASHBOARD PAGE ============ -->
+      <section id="page-dashboard" class="page active">
+        <div class="dash-grid">
+
+          <div class="dash-col-left">
+
+            <!-- Welcome banner -->
+            <div class="card welcome-card">
+              <div class="welcome-text">
+                <h2>Welcome to Your Encryption Dashboard</h2>
+                <p>Protect your data. Secure your future.<br/>Choose an option from the sidebar to get started.</p>
+              </div>
+              <div class="welcome-art">
+                <svg viewBox="0 0 200 200" fill="none">
+                  <circle cx="100" cy="100" r="80" stroke="#1f5d6e" stroke-width="1" opacity="0.5"/>
+                  <circle cx="100" cy="100" r="60" stroke="#1f5d6e" stroke-width="1" opacity="0.4"/>
+                  <g opacity="0.5" stroke="#22d3ee" stroke-width="1">
+                    <path d="M20 60h35M20 140h35M145 60h35M145 140h35"/>
+                    <circle cx="20" cy="60" r="3" fill="#22d3ee"/>
+                    <circle cx="20" cy="140" r="3" fill="#22d3ee"/>
+                    <circle cx="180" cy="60" r="3" fill="#22d3ee"/>
+                    <circle cx="180" cy="140" r="3" fill="#22d3ee"/>
+                  </g>
+                  <rect x="72" y="92" width="56" height="46" rx="6" fill="#06b6d4" opacity="0.18" stroke="#22d3ee" stroke-width="2"/>
+                  <path d="M82 92V76a18 18 0 0 1 36 0v16" stroke="#22d3ee" stroke-width="4" fill="none"/>
+                  <circle cx="100" cy="112" r="6" fill="#22d3ee"/>
+                  <rect x="97" y="115" width="6" height="14" rx="2" fill="#22d3ee"/>
+                </svg>
+              </div>
+            </div>
+
+            <!-- Encryption tool -->
+            <div class="card">
+              <h3 class="card-title">Encryption Tool</h3>
+              <div class="tool-grid">
+                <div class="field">
+                  <label>Select Algorithm</label>
+                  <select id="dash-algorithm">
+                    <option value="caesar">Caesar Cipher</option>
+                    <option value="rot13">ROT13</option>
+                    <option value="base64">Base64</option>
+                    <option value="xor">XOR Cipher</option>
+                  </select>
+                </div>
+                <div class="field">
+                  <label>Enter Secret Key / Shift <span class="info-dot" title="Used for Caesar shift or XOR key">ⓘ</span></label>
+                  <input type="text" id="dash-key" value="3" />
+                </div>
+
+                <div class="field">
+                  <label>Enter Your Text</label>
+                  <textarea id="dash-input" placeholder="Hello, this is a secret message!" rows="4"></textarea>
+                </div>
+                <div class="field">
+                  <label>Encrypted Output</label>
+                  <div class="output-wrap">
+                    <textarea id="dash-encrypted" rows="4" readonly placeholder="Encrypted text will appear here..."></textarea>
+                    <button class="icon-copy" onclick="copyText('dash-encrypted')" title="Copy">⧉</button>
+                  </div>
+                  <div class="row-actions">
+                    <button class="btn btn-secondary" onclick="copyText('dash-encrypted')"><span>⧉</span> Copy</button>
+                    <button class="btn btn-success" onclick="downloadOutput('dash-encrypted','encrypted.txt')"><span>⬇</span> Download</button>
+                  </div>
+                </div>
+
+                <div class="field">
+                  <div class="row-actions tool-actions">
+                    <button class="btn btn-primary" onclick="encryptText('dash')"><span>🔒</span> Encrypt</button>
+                    <button class="btn btn-outline" onclick="decryptText('dash')"><span>🔓</span> Decrypt</button>
+                  </div>
+                </div>
+                <div class="field">
+                  <label>Decrypted Output</label>
+                  <div class="output-wrap">
+                    <input type="text" id="dash-decrypted" readonly placeholder="Decrypted text will appear here..." />
+                    <button class="icon-copy" onclick="copyText('dash-decrypted')" title="Copy">⧉</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Strength + Algo info -->
+            <div class="two-col">
+              <div class="card">
+                <h3 class="card-title">Encryption Strength</h3>
+                <div class="strength-wrap">
+                  <div class="ring-wrap">
+                    <svg viewBox="0 0 120 120" class="ring">
+                      <circle cx="60" cy="60" r="50" class="ring-bg"/>
+                      <circle cx="60" cy="60" r="50" class="ring-fg" id="strength-ring" stroke-dasharray="314" stroke-dashoffset="40"/>
+                    </svg>
+                    <div class="ring-label">
+                      <span class="ring-pct" id="strength-pct">87%</span>
+                      <span class="ring-tag">STRONG</span>
+                    </div>
+                  </div>
+                  <div class="bars">
+                    <div class="bar-row">
+    <span>Key Strength</span>
+    <div class="bar">
+        <div id="key-bar"></div>
+    </div>
+    <b id="key-value">90%</b>
+</div>
+
+<div class="bar-row">
+    <span>Algorithm Strength</span>
+    <div class="bar">
+        <div id="algo-bar"></div>
+    </div>
+    <b id="algo-value">85%</b>
+</div>
+
+<div class="bar-row">
+    <span>Data Entropy</span>
+    <div class="bar">
+        <div id="entropy-bar"></div>
+    </div>
+    <b id="entropy-value">88%</b>
+</div>
+
+<div class="bar-row">
+    <span>Overall Strength</span>
+    <div class="bar">
+        <div id="overall-bar"></div>
+    </div>
+    <b id="overall-value">87%</b>
+</div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="card">
+                <h3 class="card-title">Algorithm Info</h3>
+                <div class="algo-info">
+                  <div class="algo-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2L4 5v6c0 5.25 3.4 9.74 8 11 4.6-1.26 8-5.75 8-11V5l-8-3z" stroke="currentColor" stroke-width="1.6"/></svg></div>
+                  <div>
+                    <h4 id="algo-info-title">Caesar Cipher</h4>
+                    <p id="algo-info-desc">A substitution cipher where each letter in the plaintext is shifted a certain number of places down or up the alphabet.</p>
+                    <button class="btn btn-link" onclick="showPage('about')">Learn More →</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Quick actions -->
+            <div class="card">
+              <h3 class="card-title">Quick Actions</h3>
+              <div class="quick-actions">
+                <button class="qa" onclick="showPage('key-generator')">
+                  <span class="qa-icon qa-cyan">🔑</span>
+                  <span class="qa-text"><b>Generate Key</b><i>Secure Key Generator</i></span>
+                </button>
+                <button class="qa" onclick="showPage('hash-generator')">
+                  <span class="qa-icon qa-purple">#</span>
+                  <span class="qa-text"><b>Hash Text</b><i>Generate Hash</i></span>
+                </button>
+                <button class="qa" onclick="showPage('file-encryption')">
+                  <span class="qa-icon qa-blue">🔒</span>
+                  <span class="qa-text"><b>Encrypt File</b><i>Encrypt Documents</i></span>
+                </button>
+                <button class="qa" onclick="showPage('file-encryption')">
+                  <span class="qa-icon qa-green">🔓</span>
+                  <span class="qa-text"><b>Decrypt File</b><i>Decrypt Documents</i></span>
+                </button>
+                <button class="qa" onclick="showPage('security-report')">
+                  <span class="qa-icon qa-orange">📄</span>
+                  <span class="qa-text"><b>Security Report</b><i>Generate PDF Report</i></span>
+                </button>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="dash-col-right">
+            <div class="card">
+              <h3 class="card-title">Algorithm Shortcuts</h3>
+              <div class="shortcut-grid">
+                <button class="shortcut shortcut-green" onclick="quickSelectAlgo('caesar')">
+                  <span class="shortcut-icon">⟲</span><span>Caesar Cipher</span>
+                </button>
+                <button class="shortcut shortcut-purple" onclick="quickSelectAlgo('rot13')">
+                  <span class="shortcut-icon">13</span><span>ROT13</span>
+                </button>
+                <button class="shortcut shortcut-orange" onclick="quickSelectAlgo('base64')">
+                  <span class="shortcut-icon">🔒</span><span>Base64</span>
+                </button>
+                <button class="shortcut shortcut-blue" onclick="quickSelectAlgo('xor')">
+                  <span class="shortcut-icon">XOR</span><span>XOR Cipher</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="card">
+              <h3 class="card-title">Recent Activity</h3>
+              <div class="activity-list" id="activity-list">
+                <!-- populated by script.js -->
+              </div>
+              <button class="btn btn-block" onclick="showPage('history')">View All History ›</button>
+            </div>
+
+            <div class="card safe-card">
+              <div class="safe-icon">✓</div>
+              <div>
+                <h4>Your Data is Safe</h4>
+                <p>All systems are secure and working properly.</p>
+                <span class="safe-dot">● Protected by Purushothama K C</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ============ TEXT ENCRYPTION PAGE ============ -->
+      <section id="page-text-encryption" class="page">
+        <div class="card">
+          <h2 class="page-title">Text Encryption</h2>
+          <p class="page-subtitle">Encrypt or decrypt any text using classic ciphers — entirely in your browser.</p>
+          <div class="tool-grid">
+            <div class="field">
+              <label>Select Algorithm</label>
+              <select id="text-algorithm">
+                <option value="caesar">Caesar Cipher</option>
+                <option value="rot13">ROT13</option>
+                <option value="base64">Base64</option>
+                <option value="xor">XOR Cipher</option>
+              </select>
+            </div>
+            <div class="field">
+              <label>Enter Secret Key / Shift</label>
+              <input type="text" id="text-key" value="3" />
+            </div>
+            <div class="field">
+              <label>Enter Your Text</label>
+              <textarea id="text-input" placeholder="Type or paste text here..." rows="6"></textarea>
+            </div>
+            <div class="field">
+              <label>Encrypted Output</label>
+              <div class="output-wrap">
+                <textarea id="text-encrypted" rows="6" readonly placeholder="Encrypted text will appear here..."></textarea>
+                <button class="icon-copy" onclick="copyText('text-encrypted')" title="Copy">⧉</button>
+              </div>
+            </div>
+            <div class="field">
+              <div class="row-actions tool-actions">
+                <button class="btn btn-primary" onclick="encryptText('text')"><span>🔒</span> Encrypt</button>
+                <button class="btn btn-outline" onclick="decryptText('text')"><span>🔓</span> Decrypt</button>
+                <button class="btn btn-secondary" onclick="copyText('text-encrypted')"><span>⧉</span> Copy</button>
+                <button class="btn btn-success" onclick="downloadOutput('text-encrypted','encrypted.txt')"><span>⬇</span> Download</button>
+              </div>
+            </div>
+            <div class="field">
+              <label>Decrypted Output</label>
+              <div class="output-wrap">
+                <input type="text" id="text-decrypted" readonly placeholder="Decrypted text will appear here..." />
+                <button class="icon-copy" onclick="copyText('text-decrypted')" title="Copy">⧉</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ FILE ENCRYPTION PAGE ============ -->
+      <section id="page-file-encryption" class="page">
+        <div class="card">
+          <h2 class="page-title">File Encryption</h2>
+          <p class="page-subtitle">Encrypt or decrypt files of any type. Processing happens securely on the server.</p>
+
+          <div class="tool-grid">
+            <div class="field">
+              <label>Select Algorithm</label>
+              <select id="file-algorithm">
+                <option value="caesar">Caesar Cipher (byte shift)</option>
+                <option value="rot13">ROT13 (byte shift 13)</option>
+                <option value="base64">Base64</option>
+                <option value="xor">XOR Cipher</option>
+              </select>
+            </div>
+            <div class="field">
+              <label>Enter Secret Key / Shift</label>
+              <input type="text" id="file-key" value="3" />
+            </div>
+          </div>
+
+          <div class="dropzone" id="dropzone">
+            <input type="file" id="file-input" hidden onchange="handleFileSelect(this.files)" />
+            <div class="dropzone-icon">📁</div>
+            <p><b>Click to choose a file</b> or drag and drop it here</p>
+            <p class="file-name" id="file-name">No file selected</p>
+          </div>
+
+          <div class="row-actions tool-actions">
+            <button class="btn btn-primary" onclick="encryptFile()"><span>🔒</span> Encrypt File</button>
+            <button class="btn btn-outline" onclick="decryptFile()"><span>🔓</span> Decrypt File</button>
+          </div>
+          <p class="hint" id="file-status"></p>
+        </div>
+      </section>
+
+      <!-- ============ HASH GENERATOR PAGE ============ -->
+      <section id="page-hash-generator" class="page">
+        <div class="card">
+          <h2 class="page-title">Hash Generator</h2>
+          <p class="page-subtitle">Generate cryptographic hashes (checksums) of any text instantly.</p>
+          <div class="tool-grid">
+            <div class="field">
+              <label>Hash Algorithm</label>
+              <select id="hash-algorithm">
+                <option value="SHA-256">SHA-256</option>
+                <option value="SHA-1">SHA-1</option>
+                <option value="SHA-384">SHA-384</option>
+                <option value="SHA-512">SHA-512</option>
+              </select>
+            </div>
+            <div class="field"></div>
+            <div class="field" style="grid-column: 1 / -1;">
+              <label>Enter Text</label>
+              <textarea id="hash-input" placeholder="Type text to hash..." rows="4"></textarea>
+            </div>
+            <div class="field" style="grid-column: 1 / -1;">
+              <label>Hash Output</label>
+              <div class="output-wrap">
+                <input type="text" id="hash-output" class="mono" readonly placeholder="Hash will appear here..." />
+                <button class="icon-copy" onclick="copyText('hash-output')" title="Copy">⧉</button>
+              </div>
+            </div>
+            <div class="field">
+              <button class="btn btn-primary" onclick="generateHash()"><span>#</span> Generate Hash</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ KEY GENERATOR PAGE ============ -->
+      <section id="page-key-generator" class="page">
+        <div class="card">
+          <h2 class="page-title">Key Generator</h2>
+          <p class="page-subtitle">Generate strong random keys or passwords for your encryption needs.</p>
+          <div class="tool-grid">
+            <div class="field">
+              <label>Key Length: <span id="key-length-val">16</span></label>
+              <input type="range" id="key-length" min="6" max="64" value="16" oninput="document.getElementById('key-length-val').textContent=this.value" />
+            </div>
+            <div class="field">
+              <label>Character Set</label>
+              <select id="key-charset">
+                <option value="all">Letters + Numbers + Symbols</option>
+                <option value="alnum">Letters + Numbers</option>
+                <option value="letters">Letters only</option>
+                <option value="numbers">Numbers only</option>
+                <option value="hex">Hex digits</option>
+              </select>
+            </div>
+            <div class="field" style="grid-column: 1 / -1;">
+              <label>Generated Key</label>
+              <div class="output-wrap">
+                <input type="text" id="key-output" class="mono" readonly placeholder="Your key will appear here..." />
+                <button class="icon-copy" onclick="copyText('key-output')" title="Copy">⧉</button>
+              </div>
+            </div>
+            <div class="field">
+              <div class="row-actions">
+                <button class="btn btn-primary" onclick="generateKey()"><span>🔑</span> Generate Key</button>
+                <button class="btn btn-secondary" onclick="copyText('key-output')"><span>⧉</span> Copy</button>
+                <button class="btn btn-success" onclick="downloadOutput('key-output','secret.key')"><span>⬇</span> Download</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ PASSWORD MANAGER PAGE ============ -->
+      <section id="page-password-manager" class="page">
+        <div class="card">
+          <h2 class="page-title">Password Manager</h2>
+          <p class="page-subtitle">A simple local vault. Entries are stored only in this browser.</p>
+          <div class="tool-grid">
+            <div class="field"><label>Site / App</label><input type="text" id="pm-site" placeholder="e.g. github.com" /></div>
+            <div class="field"><label>Username</label><input type="text" id="pm-user" placeholder="e.g. alex@example.com" /></div>
+            <div class="field"><label>Password</label><input type="text" id="pm-pass" placeholder="Enter or generate a password" /></div>
+            <div class="field">
+              <label>&nbsp;</label>
+              <div class="row-actions">
+                <button class="btn btn-outline" onclick="pmGeneratePassword()">🔑 Generate</button>
+                <button class="btn btn-primary" onclick="pmAddEntry()">+ Add Entry</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <h3 class="card-title">Saved Entries</h3>
+          <table class="data-table">
+            <thead><tr><th>Site</th><th>Username</th><th>Password</th><th></th></tr></thead>
+            <tbody id="pm-table-body"></tbody>
+          </table>
+          <p class="hint" id="pm-empty">No saved entries yet.</p>
+        </div>
+      </section>
+
+      <!-- ============ HISTORY PAGE ============ -->
+      <section id="page-history" class="page">
+        <div class="card">
+          <div class="page-title-row">
+            <h2 class="page-title">History</h2>
+            <button class="btn btn-outline" onclick="clearHistory()">Clear History</button>
+          </div>
+          <p class="page-subtitle">A full log of encryption, decryption, hashing, and key activity.</p>
+          <table class="data-table">
+            <thead><tr><th>Action</th><th>Detail</th><th>Time</th></tr></thead>
+            <tbody id="history-table-body"></tbody>
+          </table>
+          <p class="hint" id="history-empty">No activity recorded yet.</p>
+        </div>
+      </section>
+
+      <!-- ============ SECURITY REPORT PAGE ============ -->
+      <section id="page-security-report" class="page">
+        <div class="card">
+          <h2 class="page-title">Security Report</h2>
+          <p class="page-subtitle">Generate a PDF summary of your dashboard stats and recent activity.</p>
+          <div class="report-preview">
+            <div class="report-stat"><b id="report-encryptions">24</b><span>Encryptions</span></div>
+            <div class="report-stat"><b id="report-files">8</b><span>Files Processed</span></div>
+            <div class="report-stat"><b>LOW</b><span>Threat Level</span></div>
+            <div class="report-stat"><b>87%</b><span>Overall Strength</span></div>
+          </div>
+          <button class="btn btn-primary" onclick="generateSecurityReport()"><span>📄</span> Generate PDF Report</button>
+          <p class="hint" id="report-status"></p>
+        </div>
+      </section>
+
+      <!-- ============ DOWNLOAD CENTER PAGE ============ -->
+      <section id="page-download-center" class="page">
+        <div class="card">
+          <h2 class="page-title">Download Center</h2>
+          <p class="page-subtitle">Files generated during this session.</p>
+          <table class="data-table">
+            <thead><tr><th>File</th><th>Type</th><th>Time</th></tr></thead>
+            <tbody id="downloads-table-body"></tbody>
+          </table>
+          <p class="hint" id="downloads-empty">Nothing downloaded yet. Generated keys, reports and encrypted files will be listed here.</p>
+        </div>
+      </section>
+
+      <!-- ============ SETTINGS PAGE ============ -->
+      <section id="page-settings" class="page">
+        <div class="card">
+          <h2 class="page-title">Settings</h2>
+          <div class="tool-grid">
+            <div class="field">
+              <label>Accent Color</label>
+              <select id="settings-accent" onchange="applyAccent(this.value)">
+                <option value="cyan">Cyan (default)</option>
+                <option value="green">Green</option>
+                <option value="purple">Purple</option>
+                <option value="orange">Orange</option>
+              </select>
+            </div>
+            <div class="field">
+              <label>Default Algorithm</label>
+              <select id="settings-default-algo">
+                <option value="caesar">Caesar Cipher</option>
+                <option value="rot13">ROT13</option>
+                <option value="base64">Base64</option>
+                <option value="xor">XOR Cipher</option>
+              </select>
+            </div>
+          </div>
+          <button class="btn btn-outline" onclick="clearAllData()">Clear All Local Data</button>
+        </div>
+      </section>
+
+      <!-- ============ ABOUT PAGE ============ -->
+      <section id="page-about" class="page">
+        <div class="card">
+          <h2 class="page-title">About Cyber Encryption Center</h2>
+          <p class="page-subtitle">Version 1.0.0 &middot; Built with Flask</p>
+          <p class="about-text">
+            Cyber Encryption Center is a lightweight toolkit for learning and experimenting with
+            classic encryption techniques: Caesar Cipher, ROT13, Base64 encoding, and XOR ciphers,
+            alongside hash generation, key generation, file encryption, and a local password vault.
+          </p>
+          <p class="about-text">
+            These are educational ciphers, not production-grade cryptography — avoid using them
+            to protect anything genuinely sensitive.
+          </p>
+          <p class="about-text">© 2026 Purushothama K C. All rights reserved.</p>
+        </div>
+      </section>
+
+    </main>
+  </div>
+</div>
+
+<div id="toast" class="toast"></div>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
