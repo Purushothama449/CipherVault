@@ -79,7 +79,7 @@ CipherVault/
 ### Clone the repository
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/CipherVault.git
+git clone https://github.com/Purushothama449/CipherVault.git
 ```
 
 ### Navigate to the project
@@ -139,7 +139,9 @@ http://127.0.0.1:5000
 B.Tech – Computer Science Engineering (AI & ML)
 
 
-- LinkedIn: *(Add your LinkedIn profile URL here)*
+LinkedIn: https://linkedin.com/in/purushothamakc-ai
+
+
 
 ---
 
