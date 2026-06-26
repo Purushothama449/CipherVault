@@ -6,7 +6,7 @@ A modern **Flask-based Encryption & Security Toolkit** that enables secure text 
 
 ## 📸 Dashboard
 
-![CipherVault Dashboard](screenshots/Dashboard1.png)
+![CipherVault Dashboard](CipherVault-Security-Toolkit/screenshots/Dashboard1.png)
 
 ---
 
